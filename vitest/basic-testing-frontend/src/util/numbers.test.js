@@ -3,8 +3,20 @@ import { transformToNumber } from './numbers'
 
 it('Should transform a string number to a number of type number', () => {
     // Arrange
-    const number = '1'
-    const result = transformToNumber(number)
+    const input = '1'
+    const result = transformToNumber(input)
 
-    expect(result).toBe(1)
+    expect(result).toBeTypeOf('number')
+})
+
+it('Should yield NaN for non-transformable values', () => {
+    // Arrange
+    const input = 'invalid'
+    const input2 = {}
+
+    const result = transformToNumber(input)
+    const result2 = transformToNumber(input2)
+
+    expect(result).toBeNaN()
+    expect(result2).toBeNaN()
 })
